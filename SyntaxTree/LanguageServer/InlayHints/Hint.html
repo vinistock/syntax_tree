@@ -4,21 +4,21 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class PrettyPrint::IfBreakBuilder - RDoc Documentation</title>
+<title>class SyntaxTree::LanguageServer::InlayHints::Hint - RDoc Documentation</title>
 
 <script type="text/javascript">
-  var rdoc_rel_prefix = "../";
-  var index_rel_prefix = "../";
+  var rdoc_rel_prefix = "../../../";
+  var index_rel_prefix = "../../../";
 </script>
 
-<script src="../js/navigation.js" defer></script>
-<script src="../js/search.js" defer></script>
-<script src="../js/search_index.js" defer></script>
-<script src="../js/searcher.js" defer></script>
-<script src="../js/darkfish.js" defer></script>
+<script src="../../../js/navigation.js" defer></script>
+<script src="../../../js/search.js" defer></script>
+<script src="../../../js/search_index.js" defer></script>
+<script src="../../../js/searcher.js" defer></script>
+<script src="../../../js/darkfish.js" defer></script>
 
-<link href="../css/fonts.css" rel="stylesheet">
-<link href="../css/rdoc.css" rel="stylesheet">
+<link href="../../../css/fonts.css" rel="stylesheet">
+<link href="../../../css/rdoc.css" rel="stylesheet">
 
 
 <body id="top" role="document" class="class">
@@ -26,13 +26,13 @@
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
   <h2>
-    <a href="../index.html" rel="home">Home</a>
+    <a href="../../../index.html" rel="home">Home</a>
   </h2>
 
   <div id="table-of-contents-navigation">
-    <a href="../table_of_contents.html#pages">Pages</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
+    <a href="../../../table_of_contents.html#pages">Pages</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
   </div>
 </div>
 
@@ -73,21 +73,21 @@
 
   <ul class="link-list" role="directory">
     <li ><a href="#method-c-new">::new</a>
-    <li ><a href="#method-i-if_flat">#if_flat</a>
+    <li ><a href="#method-i-to_json">#to_json</a>
   </ul>
 </div>
 
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-PrettyPrint::IfBreakBuilder">
-  <h1 id="class-PrettyPrint::IfBreakBuilder" class="class">
-    class PrettyPrint::IfBreakBuilder
+<main role="main" aria-labelledby="class-SyntaxTree::LanguageServer::InlayHints::Hint">
+  <h1 id="class-SyntaxTree::LanguageServer::InlayHints::Hint" class="class">
+    class SyntaxTree::LanguageServer::InlayHints::Hint
   </h1>
 
   <section class="description">
     
-<p>A small DSL-like object used for specifying the alternative contents to be printed if the surrounding group doesn’t break for an <a href="IfBreak.html"><code>IfBreak</code></a> node.</p>
+<p>This represents a hint that is going to be displayed in the editor.</p>
 
   </section>
 
@@ -100,9 +100,9 @@
         <h3>Attributes</h3>
       </header>
 
-      <div id="attribute-i-builder" class="method-detail">
+      <div id="attribute-i-character" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">builder</span><span
+          <span class="method-name">character</span><span
             class="attribute-access-type">[R]</span>
         </div>
 
@@ -110,9 +110,19 @@
         
         </div>
       </div>
-      <div id="attribute-i-if_break" class="method-detail">
+      <div id="attribute-i-label" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">if_break</span><span
+          <span class="method-name">label</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        </div>
+      </div>
+      <div id="attribute-i-line" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">line</span><span
             class="attribute-access-type">[R]</span>
         </div>
 
@@ -131,7 +141,7 @@
       <div id="method-c-new" class="method-detail ">
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(builder, if_break)</span>
+            class="method-args">(line:, character:, label:)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
@@ -139,10 +149,11 @@
           
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/prettyprint.rb, line 987</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">builder</span>, <span class="ruby-identifier">if_break</span>)
-  <span class="ruby-ivar">@builder</span> = <span class="ruby-identifier">builder</span>
-  <span class="ruby-ivar">@if_break</span> = <span class="ruby-identifier">if_break</span>
+            <pre><span class="ruby-comment"># File lib/syntax_tree/language_server/inlay_hints.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-value">line:</span>, <span class="ruby-value">character:</span>, <span class="ruby-value">label:</span>)
+  <span class="ruby-ivar">@line</span> = <span class="ruby-identifier">line</span>
+  <span class="ruby-ivar">@character</span> = <span class="ruby-identifier">character</span>
+  <span class="ruby-ivar">@label</span> = <span class="ruby-identifier">label</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
@@ -157,20 +168,26 @@
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-if_flat" class="method-detail ">
+      <div id="method-i-to_json" class="method-detail ">
         <div class="method-heading">
-          <span class="method-name">if_flat</span><span
-            class="method-args">(&amp;block)</span>
+          <span class="method-name">to_json</span><span
+            class="method-args">(*opts)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
 
         <div class="method-description">
-          
+          <p>This is the shape that the LSP expects.</p>
 
-          <div class="method-source-code" id="if_flat-source">
-            <pre><span class="ruby-comment"># File lib/syntax_tree/prettyprint.rb, line 992</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">if_flat</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
-  <span class="ruby-identifier">builder</span>.<span class="ruby-identifier">with_target</span>(<span class="ruby-identifier">if_break</span>.<span class="ruby-identifier">flat_contents</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+          <div class="method-source-code" id="to_json-source">
+            <pre><span class="ruby-comment"># File lib/syntax_tree/language_server/inlay_hints.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
+  {
+    <span class="ruby-value">position:</span> {
+      <span class="ruby-value">line:</span> <span class="ruby-identifier">line</span>,
+      <span class="ruby-value">character:</span> <span class="ruby-identifier">character</span>
+    },
+    <span class="ruby-value">label:</span> <span class="ruby-identifier">label</span>
+  }.<span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">opts</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
         </div>
